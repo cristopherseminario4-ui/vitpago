@@ -1,6 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const { renderIndex } = require('./render');
 
 const ROOT = path.join(__dirname, '..', 'frontend');
 const PORT = process.env.PORT || 4173;
@@ -16,19 +17,12 @@ const MIME = {
     '.ico': 'image/x-icon',
 };
 
-function renderIndex() {
-    const template = fs.readFileSync(path.join(ROOT, 'pages', 'index.html'), 'utf8');
-    const header = fs.readFileSync(path.join(ROOT, 'partials', 'header.html'), 'utf8');
-    const footer = fs.readFileSync(path.join(ROOT, 'partials', 'footer.html'), 'utf8');
-    return template.replace('{{HEADER}}', header).replace('{{FOOTER}}', footer);
-}
-
 const server = http.createServer((req, res) => {
     const urlPath = req.url.split('?')[0];
 
     if (urlPath === '/' || urlPath === '/index.html') {
         try {
-            const html = renderIndex();
+            const html = renderIndex(ROOT);
             res.writeHead(200, { 'Content-Type': MIME['.html'] });
             res.end(html);
         } catch (err) {
