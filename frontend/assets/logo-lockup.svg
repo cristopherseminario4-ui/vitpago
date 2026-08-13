@@ -1,0 +1,10 @@
+<svg viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VIT PAGO">
+  <rect width="1200" height="1200" fill="#0B0E23"/>
+  <g transform="translate(150,420)">
+    <rect x="4" y="4" width="270" height="360" rx="42" fill="none" stroke="#98A1F1" stroke-width="26"/>
+    <rect x="4" y="108" width="270" height="60" fill="#98A1F1"/>
+    <rect x="56" y="264" width="108" height="48" rx="16" fill="#98A1F1" opacity="0.55"/>
+  </g>
+  <text x="500" y="540" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="150" fill="#ffffff" letter-spacing="-2">VIT</text>
+  <text x="500" y="700" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="150" fill="#ffffff" letter-spacing="-2">PAGO</text>
+</svg>
