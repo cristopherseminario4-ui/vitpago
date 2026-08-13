@@ -67,17 +67,48 @@
         });
     },'tiltCards');
 
-    safe(function heroParallax(){
+    safe(function heroInteractive3D(){
         var hero=document.querySelector('.hero');
         var inner=document.querySelector('.hero-inner');
         if(!hero||!inner)return;
+        var orbs=Array.prototype.slice.call(hero.querySelectorAll('.hero-orb'));
+
+        var scrollProgress=0;
+        var tiltX=0,tiltY=0;
+
+        function render(){
+            var translateY=scrollProgress*60;
+            var scale=1-scrollProgress*0.06;
+            inner.style.transform=
+                'perspective(1200px) translateY('+translateY+'px) scale('+scale+') '+
+                'rotateX('+tiltX+'deg) rotateY('+tiltY+'deg)';
+            inner.style.opacity=String(Math.max(1-scrollProgress*0.8,0));
+        }
+
         window.addEventListener('scroll',function(){
             var vh=window.innerHeight||800;
-            var progress=Math.min(Math.max(window.scrollY/vh,0),1);
-            inner.style.transform='translateY('+(progress*60)+'px)';
-            inner.style.opacity=String(1-progress*0.8);
+            scrollProgress=Math.min(Math.max(window.scrollY/vh,0),1);
+            render();
         },{passive:true});
-    },'heroParallax');
+
+        hero.addEventListener('mousemove',function(e){
+            var rect=hero.getBoundingClientRect();
+            var px=(e.clientX-rect.left)/rect.width-0.5;
+            var py=(e.clientY-rect.top)/rect.height-0.5;
+            tiltY=px*8;
+            tiltX=py*-8;
+            render();
+            orbs.forEach(function(orb,i){
+                var depth=(i+1)*22;
+                orb.style.transform='translate('+(px*depth)+'px,'+(py*depth)+'px)';
+            });
+        },{passive:true});
+
+        hero.addEventListener('mouseleave',function(){
+            tiltX=0;tiltY=0;
+            render();
+        });
+    },'heroInteractive3D');
 
     safe(function wireWhatsappLinks(){
         var links=document.querySelectorAll('[data-wa-link]');
