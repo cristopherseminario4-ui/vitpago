@@ -3,7 +3,10 @@
     { "source": "/css/:path*", "destination": "/frontend/css/:path*" },
     { "source": "/js/:path*", "destination": "/frontend/js/:path*" },
     { "source": "/assets/:path*", "destination": "/frontend/assets/:path*" },
-    { "source": "/", "destination": "/api/index" },
-    { "source": "/index.html", "destination": "/api/index" }
+    { "source": "/", "destination": "/api/render?page=index" },
+    { "source": "/index.html", "destination": "/api/render?page=index" },
+    { "source": "/nosotros", "destination": "/api/render?page=nosotros" },
+    { "source": "/funcionamiento", "destination": "/api/render?page=funcionamiento" },
+    { "source": "/contacto", "destination": "/api/render?page=contacto" }
   ]
 }

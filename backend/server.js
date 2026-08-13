@@ -1,7 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const { renderIndex } = require('./render');
+const { renderPage } = require('./render');
 
 const ROOT = path.join(__dirname, '..', 'frontend');
 const PORT = process.env.PORT || 4173;
@@ -17,12 +17,20 @@ const MIME = {
     '.ico': 'image/x-icon',
 };
 
+const ROUTES = {
+    '/': 'index',
+    '/index.html': 'index',
+    '/nosotros': 'nosotros',
+    '/funcionamiento': 'funcionamiento',
+    '/contacto': 'contacto',
+};
+
 const server = http.createServer((req, res) => {
     const urlPath = req.url.split('?')[0];
 
-    if (urlPath === '/' || urlPath === '/index.html') {
+    if (ROUTES[urlPath]) {
         try {
-            const html = renderIndex(ROOT);
+            const html = renderPage(ROOT, ROUTES[urlPath]);
             res.writeHead(200, { 'Content-Type': MIME['.html'] });
             res.end(html);
         } catch (err) {
