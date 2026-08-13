@@ -326,39 +326,42 @@ a{color:inherit;text-decoration:none;}
 
 /* ---------- BANKS ---------- */
 .banks{padding:140px 0;background:var(--bg);}
-.bank-row{
-    display:flex;
-    align-items:baseline;
-    justify-content:space-between;
-    padding:30px 0;
-    border-bottom:1px solid var(--line);
-    transition:padding 0.4s ease;
-    cursor:default;
+
+.bank-collage{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:2px;
+    background:var(--line);
+    margin:40px 0 8px;
 }
-.bank-row:first-of-type{border-top:1px solid var(--line);}
-.bank-row .num{
-    font-family:'Cormorant Garamond',serif;
-    font-size:15px;
-    color:var(--gold-deep);
-    letter-spacing:1px;
-    width:60px;
-    flex-shrink:0;
+.bank-tile{
+    background:#ffffff;
+    padding:38px 30px;
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;
+    transition:box-shadow 0.3s ease;
+    transform-style:preserve-3d;
+    will-change:transform;
 }
-.bank-row .name{
-    font-family:'Cormorant Garamond',serif;
-    font-size:clamp(26px,4vw,46px);
-    font-weight:500;
-    color:var(--ink);
-    transition:color 0.4s ease, transform 0.4s ease;
-    flex:1;
+.bank-tile:hover{box-shadow:0 20px 40px rgba(20,22,31,0.08);}
+.bank-tile img{
+    max-width:100%;
+    max-height:38px;
+    width:auto;height:auto;
+    object-fit:contain;
+    filter:grayscale(100%);
+    opacity:0.55;
+    transform:translateZ(20px);
+    transition:filter 0.35s ease, opacity 0.35s ease, transform 0.3s ease;
 }
-.bank-row .tag{
-    font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-dim);
-    flex-shrink:0;opacity:0;transition:opacity 0.4s ease;
+.bank-tile:hover img{filter:grayscale(0%);opacity:1;}
+
+@media (max-width:860px){
+    .bank-collage{grid-template-columns:repeat(3,1fr);}
 }
-.bank-row:hover{padding-left:14px;}
-.bank-row:hover .name{color:var(--gold-deep);transform:translateX(6px);}
-.bank-row:hover .tag{opacity:1;}
+@media (max-width:560px){
+    .bank-collage{grid-template-columns:repeat(2,1fr);}
+}
 
 .banks-foot{
     display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;
@@ -574,7 +577,6 @@ a{color:inherit;text-decoration:none;}
     .hero{padding:120px 24px 60px;}
     .statement{padding:110px 24px;}
     .banks,.features{padding:90px 0;}
-    .bank-row .tag{display:none;}
     .cta{padding:110px 24px;}
     .footer-bottom{flex-direction:column;align-items:flex-start;}
 }
