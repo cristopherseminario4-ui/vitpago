@@ -1,5 +1,11 @@
-<svg viewBox="0 0 76 96" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VIT PAGO">
-  <rect x="4" y="4" width="68" height="88" rx="11" fill="none" stroke="#98A1F1" stroke-width="6.5"/>
-  <rect x="4" y="27" width="68" height="15" fill="#98A1F1"/>
-  <rect x="14" y="66" width="27" height="12" rx="4" fill="#98A1F1" opacity="0.55"/>
+<svg viewBox="0 0 64 76" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VIT PAGO">
+  <defs>
+    <linearGradient id="vitGold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F0D080"/>
+      <stop offset="0.5" stop-color="#D4A017"/>
+      <stop offset="1" stop-color="#9C7112"/>
+    </linearGradient>
+  </defs>
+  <path d="M32 2 L60 12 V38 C60 58 46 68 32 74 C18 68 4 58 4 38 V12 Z" fill="none" stroke="url(#vitGold)" stroke-width="5"/>
+  <text x="32" y="49" font-family="Georgia, 'Times New Roman', serif" font-size="32" font-weight="700" text-anchor="middle" fill="url(#vitGold)">V</text>
 </svg>
