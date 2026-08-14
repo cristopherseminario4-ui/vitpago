@@ -592,15 +592,21 @@ a{color:inherit;text-decoration:none;}
 }
 
 /* ---------- FLOATING WHATSAPP ---------- */
-.wa-float{
+.wa-widget{
     position:fixed;
     bottom:28px;right:28px;
+    z-index:200;
+    display:flex;align-items:center;gap:14px;
+}
+
+.wa-float{
+    position:relative;
+    flex-shrink:0;
     width:56px;height:56px;
     background:#25D366;
     border-radius:50%;
     display:flex;align-items:center;justify-content:center;
     box-shadow:0 10px 24px rgba(0,0,0,0.28);
-    z-index:200;
     transition:transform 0.3s ease;
 }
 .wa-float svg{width:26px;height:26px;fill:#ffffff;}
@@ -619,8 +625,35 @@ a{color:inherit;text-decoration:none;}
     0%{transform:scale(1);opacity:0.55;}
     100%{transform:scale(1.6);opacity:0;}
 }
+
+.wa-tooltip{
+    display:flex;align-items:center;gap:10px;
+    background:#ffffff;
+    color:var(--ink);
+    padding:12px 14px 12px 18px;
+    border-radius:24px;
+    box-shadow:0 10px 26px rgba(20,22,31,0.18);
+    font-size:14px;font-weight:500;
+    white-space:nowrap;
+    cursor:pointer;
+    opacity:0;
+    transform:translateX(10px) scale(0.95);
+    pointer-events:none;
+    transition:opacity 0.35s ease, transform 0.35s ease;
+}
+.wa-tooltip.show{opacity:1;transform:translateX(0) scale(1);pointer-events:auto;}
+.wa-tooltip-close{
+    background:none;border:none;
+    font-size:18px;line-height:1;
+    color:var(--ink-dim);
+    cursor:pointer;
+    padding:0;
+}
+
 @media (max-width:640px){
-    .wa-float{bottom:18px;right:18px;width:50px;height:50px;}
+    .wa-widget{bottom:18px;right:18px;}
+    .wa-float{width:50px;height:50px;}
+    .wa-tooltip{font-size:13px;padding:10px 12px 10px 16px;}
 }
 
 /* ---------- FOOTER ---------- */
